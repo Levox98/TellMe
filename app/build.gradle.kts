@@ -50,6 +50,10 @@ android {
 
 dependencies {
 
+    implementation(project(":core"))
+    implementation(project(":core-network"))
+    implementation(project(":core-ui"))
+
     implementation(platform(Dependencies.Compose.bom))
 
     implementation(Dependencies.Core.coreKtx)
