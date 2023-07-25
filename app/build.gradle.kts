@@ -53,6 +53,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":core-network"))
     implementation(project(":core-ui"))
+    implementation(project(":feature-questions"))
 
     implementation(platform(Dependencies.Compose.bom))
 
