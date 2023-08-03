@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetQuestionsUseCase @Inject constructor(
     private val questionsRepository: QuestionsRepository
 ) {
-    suspend operator fun invoke() = questionsRepository.getQuestions()
+    suspend operator fun invoke() = questionsRepository.loadQuestions()
 }
