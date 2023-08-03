@@ -45,13 +45,13 @@ class QuestionsScreenViewModel @Inject constructor(
                 withContext(Dispatchers.Main) {
                     when {
                         state.isError() -> {
-                            viewState = viewState.copy(isError = true)
+                            viewState = viewState.copy(isError = true, isLoading = false)
                         }
                         state.isLoading() -> {
-                            viewState = viewState.copy(isLoading = true)
+                            viewState = viewState.copy(isLoading = true, isError = false)
                         }
                         state.isSuccess() -> {
-                            viewState = viewState.copy(questions = state.data ?: emptyList())
+                            viewState = viewState.copy(questions = state.data ?: emptyList(), isLoading = false)
                         }
                     }
                 }
