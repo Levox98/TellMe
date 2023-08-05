@@ -80,4 +80,12 @@ object Dependencies {
         const val kapt = "androidx.room:room-compiler:$version"
         const val room = "androidx.room:room-ktx:$version"
     }
+
+    object Navigation {
+        private const val composeNavVersion = "2.6.0"
+        private const val hiltNavVersion = "1.0.0"
+
+        const val compose = "androidx.navigation:navigation-compose:$composeNavVersion"
+        const val hilt = "androidx.hilt:hilt-navigation-compose:$hiltNavVersion"
+    }
 }

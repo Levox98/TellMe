@@ -58,4 +58,7 @@ dependencies {
     implementation(Dependencies.Compose.iconsExtended)
 
     implementation(Dependencies.Lifecycle.viewmodel)
+
+    implementation(Dependencies.Navigation.compose)
+    implementation(Dependencies.Navigation.hilt)
 }

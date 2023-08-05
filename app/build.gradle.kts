@@ -75,4 +75,6 @@ dependencies {
 
     debugImplementation(Dependencies.Compose.debugUiTooling)
     debugImplementation(Dependencies.Compose.debugUiTestManifest)
+
+    implementation(Dependencies.Navigation.compose)
 }
