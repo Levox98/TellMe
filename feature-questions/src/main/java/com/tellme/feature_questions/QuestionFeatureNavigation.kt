@@ -15,27 +15,33 @@ fun NavGraphBuilder.addQuestionsFeature(
     navController: NavHostController
 ) {
     navigation(
-        startDestination = "questions_list",
-        route = "questions_start"
+        startDestination = QuestionFeatureNavScreen.QuestionsList.route,
+        route = QuestionFeatureNavScreen.QuestionsRoot.route
     ) {
-        composable("questions_list") {
+        composable(QuestionFeatureNavScreen.QuestionsList.route) {
             QuestionsScreen(
                 vm = hiltViewModel(),
-                goToDetailScreen = remember { { questionId ->
-                    questionId?.let {
-                        navController.navigate("question/$questionId") { popUpTo("questions_list") }
+                goToDetailScreen = remember {
+                    { questionId ->
+                        questionId?.let {
+                            navController.navigate(
+                                QuestionFeatureNavScreen.QuestionDetails.createRoute(questionId)
+                            ) { popUpTo(QuestionFeatureNavScreen.QuestionsList.route) }
+                        }
                     }
-                } }
+                }
             )
         }
 
         composable(
-            route = "question/{questionId}",
-            arguments = listOf(navArgument("questionId") { type = NavType.StringType })
+            route = QuestionFeatureNavScreen.QuestionDetails.route,
+            arguments = listOf(navArgument(QuestionFeatureNavScreen.QuestionDetails.QUESTION_ID) {
+                type = NavType.StringType
+            })
         ) { backStackEntry ->
             QuestionDetailScreen(
                 vm = hiltViewModel(),
-                questionId = backStackEntry.arguments?.getString("questionId")
+                questionId = backStackEntry.arguments?.getString(QuestionFeatureNavScreen.QuestionDetails.QUESTION_ID)
             )
         }
     }
