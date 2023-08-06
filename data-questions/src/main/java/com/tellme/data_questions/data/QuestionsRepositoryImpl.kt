@@ -33,4 +33,14 @@ class QuestionsRepositoryImpl @Inject constructor(
             emit(Either.success(listToEmit))
         }
     }
+
+    override suspend fun getQuestionById(questionId: String?): Flow<Either<Question?>> = flow {
+        emit(Either.loading())
+
+        if (questionId == null) emit(Either.error(AppError.Unknown("Question ID is null")))
+
+        val result = questionDao.getQuestionById(questionId!!)
+
+        emit(Either.success(result?.toDomain()))
+    }
 }
