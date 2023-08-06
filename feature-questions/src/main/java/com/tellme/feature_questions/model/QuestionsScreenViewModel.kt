@@ -17,10 +17,13 @@ data class QuestionsScreenState(
     val questions: List<Question> = emptyList()
 )
 
-sealed class QuestionsScreenAction : BaseAction()
+sealed class QuestionsScreenAction : BaseAction() {
+    class GoToQuestionDetail(val questionId: String) : QuestionsScreenAction()
+}
 
 sealed class QuestionsScreenEvent {
     object GetQuestionsEvent : QuestionsScreenEvent()
+    class GoToAnswerQuestionEvent(val questionId: String) : QuestionsScreenEvent()
 }
 
 @HiltViewModel
@@ -36,6 +39,9 @@ class QuestionsScreenViewModel @Inject constructor(
     override fun obtainEvent(viewEvent: QuestionsScreenEvent) {
         when (viewEvent) {
             is QuestionsScreenEvent.GetQuestionsEvent -> getAllQuestions()
+            is QuestionsScreenEvent.GoToAnswerQuestionEvent -> {
+                sendAction(QuestionsScreenAction.GoToQuestionDetail(viewEvent.questionId))
+            }
         }
     }
 
