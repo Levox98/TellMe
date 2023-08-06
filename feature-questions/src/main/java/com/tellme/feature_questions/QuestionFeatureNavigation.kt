@@ -38,11 +38,8 @@ fun NavGraphBuilder.addQuestionsFeature(
             arguments = listOf(navArgument(QuestionFeatureNavScreen.QuestionDetails.QUESTION_ID) {
                 type = NavType.StringType
             })
-        ) { backStackEntry ->
-            QuestionDetailScreen(
-                vm = hiltViewModel(),
-                questionId = backStackEntry.arguments?.getString(QuestionFeatureNavScreen.QuestionDetails.QUESTION_ID)
-            )
+        ) {
+            QuestionDetailScreen(vm = hiltViewModel())
         }
     }
 }
