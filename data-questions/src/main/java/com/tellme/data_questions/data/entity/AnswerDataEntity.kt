@@ -6,11 +6,11 @@ import androidx.room.TypeConverters
 import com.tellme.data_questions.data.mappers.DateTypeConverter
 import java.util.Date
 
-@Entity(tableName = "questions")
+@Entity(tableName = "answers")
 @TypeConverters(DateTypeConverter::class)
-data class QuestionDataEntity(
+data class AnswerDataEntity(
     @PrimaryKey
-    val objectId: String,
-    val questionText: String,
-    val createdAt: Date
+    val questionId: String,
+    val answerText: String,
+    val answerDate: Date,
 )

@@ -8,5 +8,7 @@ import com.tellme.data_questions.network.entity.QuestionApiEntity
 fun QuestionDataEntity.toDomain() = Question(objectId = objectId, text = questionText)
 fun List<QuestionDataEntity>.toDomain() = this.map { it.toDomain() }
 
-fun QuestionApiEntity.toData() = QuestionDataEntity(objectId, questionText)
+fun QuestionApiEntity.toData() =
+    QuestionDataEntity(objectId = objectId, questionText = questionText, createdAt = createdAt)
+
 fun List<QuestionApiEntity>.toData() = this.map { it.toData() }
