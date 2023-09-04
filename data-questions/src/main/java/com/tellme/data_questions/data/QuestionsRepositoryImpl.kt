@@ -3,8 +3,8 @@ package com.tellme.data_questions.data
 import com.tellme.core.AppError
 import com.tellme.core.Either
 import com.tellme.data_questions.data.db.QuestionDao
-import com.tellme.data_questions.data.entity.toData
-import com.tellme.data_questions.data.entity.toDomain
+import com.tellme.data_questions.data.mappers.toData
+import com.tellme.data_questions.data.mappers.toDomain
 import com.tellme.data_questions.domain.QuestionsRepository
 import com.tellme.data_questions.domain.entity.Question
 import com.tellme.data_questions.network.QuestionsApi
