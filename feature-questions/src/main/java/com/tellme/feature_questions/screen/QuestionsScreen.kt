@@ -51,9 +51,7 @@ fun QuestionsScreen(
     LaunchedEffect(viewActions) {
         viewActions.onEach { action ->
             when (action) {
-                is QuestionsScreenAction.GoToQuestionDetail -> {
-                    goToDetailScreen(action.questionId)
-                }
+                is QuestionsScreenAction.GoToQuestionDetail -> goToDetailScreen(action.questionId)
             }
         }.collect {
             Log.d("APP_NAV", "$it")
