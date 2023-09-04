@@ -1,10 +1,12 @@
 plugins {
     id("com.android.library")
+    id("com.google.dagger.hilt.android")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
-    namespace = "com.tellme.core_ui"
+    namespace = "com.tellme.data_questions"
     compileSdk = Config.compileSdkVersion
 
     defaultConfig {
@@ -31,19 +33,22 @@ android {
     kotlinOptions {
         jvmTarget = Config.jvmTarget
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Dependencies.Compose.compose_compiler_version
-    }
 }
 
 dependencies {
 
+    implementation(project(":core"))
+    implementation(project(":core-network"))
+
     implementation(Dependencies.Core.coreKtx)
 
-    implementation(platform(Dependencies.Compose.bom))
-    implementation(Dependencies.Compose.ui)
-    implementation(Dependencies.Compose.material)
+    kapt(Dependencies.Hilt.kapt)
+    implementation(Dependencies.Hilt.hilt)
+
+    implementation(Dependencies.Retrofit.retrofit)
+    implementation(Dependencies.Retrofit.gsonConverter)
+
+    api(Dependencies.Room.api)
+    kapt(Dependencies.Room.kapt)
+    implementation(Dependencies.Room.room)
 }

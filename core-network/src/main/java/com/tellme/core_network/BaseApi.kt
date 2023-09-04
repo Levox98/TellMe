@@ -35,7 +35,7 @@ abstract class BaseApi {
                 Either.error(AppError.Unknown("Response unsuccessful"))
             }
         } catch (e: Exception) {
-            Log.e("API_ERROR", "${e.message}")
+            Log.e("API_ERROR | $tag", "${e.message}")
             Either.error(AppError.Unknown(e.message ?: ""))
         }
     }

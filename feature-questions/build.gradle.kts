@@ -1,10 +1,12 @@
 plugins {
     id("com.android.library")
+    id("com.google.dagger.hilt.android")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
-    namespace = "com.tellme.core_ui"
+    namespace = "com.tellme.feature_questions"
     compileSdk = Config.compileSdkVersion
 
     defaultConfig {
@@ -41,9 +43,22 @@ android {
 
 dependencies {
 
+    implementation(project(":core"))
+    implementation(project(":data-questions"))
+
     implementation(Dependencies.Core.coreKtx)
+
+    kapt(Dependencies.Hilt.kapt)
+    implementation(Dependencies.Hilt.hilt)
 
     implementation(platform(Dependencies.Compose.bom))
     implementation(Dependencies.Compose.ui)
+    implementation(Dependencies.Compose.uiToolingPreview)
     implementation(Dependencies.Compose.material)
+    implementation(Dependencies.Compose.iconsExtended)
+
+    implementation(Dependencies.Lifecycle.viewmodel)
+
+    implementation(Dependencies.Navigation.compose)
+    implementation(Dependencies.Navigation.hilt)
 }
