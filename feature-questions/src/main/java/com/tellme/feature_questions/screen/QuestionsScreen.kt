@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.requiredWidthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.tellme.core_ui.theme.AppTheme
 import com.tellme.feature_questions.model.QuestionsScreenAction
 import com.tellme.feature_questions.model.QuestionsScreenEvent
 import com.tellme.feature_questions.model.QuestionsScreenViewModel
@@ -52,7 +52,7 @@ fun QuestionsScreen(
     }
 
     if (viewState.value.isLoading) {
-        CircularProgressIndicator()
+        CircularProgressIndicator(color = AppTheme.colors.primary)
     }
 
     LazyColumn(
@@ -84,8 +84,8 @@ private fun QuestionCard(
     Surface(
         modifier = modifier
             .clickable { onClick() },
-        shape = MaterialTheme.shapes.medium,
-        color = MaterialTheme.colors.surface,
+        shape = AppTheme.shapes.medium,
+        color = AppTheme.colors.primary,
     ) {
         Row(
             modifier = Modifier
@@ -96,10 +96,11 @@ private fun QuestionCard(
                 modifier = Modifier
                     .padding(vertical = 16.dp, horizontal = 16.dp),
                 text = questionText,
-                color = MaterialTheme.colors.onSurface,
+                color = AppTheme.colors.secondary,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Start,
-                maxLines = 1
+                maxLines = 1,
+                style = AppTheme.typography.body1
             )
             Spacer(modifier = Modifier.requiredWidthIn(min = 16.dp))
         }

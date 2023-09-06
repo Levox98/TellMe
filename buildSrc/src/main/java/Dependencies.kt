@@ -26,8 +26,10 @@ object Dependencies {
 
     object Core {
         private const val core_version = "1.9.0"
+        private const val appcompat_version = "1.6.1"
 
         val coreKtx = "androidx.core:core-ktx:$core_version"
+        val appCompat = "androidx.appcompat:appcompat:$appcompat_version"
     }
 
     object Lifecycle {

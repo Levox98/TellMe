@@ -22,7 +22,7 @@ val fontFamilyNunitoSans = FontFamily(fonts = listOf(fontNunitoSans))
 val defaultTextStyle = TextStyle(
     fontFamily = FontFamily.Default,
     fontStyle = FontStyle.Normal,
-    color = colorPurple
+    color = colorBlack
 )
 
 val typoH0 = defaultTextStyle.copy(fontFamily = fontFamilyKrofftsman, fontSize = 42.sp)

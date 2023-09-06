@@ -42,8 +42,11 @@ android {
 dependencies {
 
     implementation(Dependencies.Core.coreKtx)
+    implementation(Dependencies.Core.appCompat)
 
     implementation(platform(Dependencies.Compose.bom))
     implementation(Dependencies.Compose.ui)
     implementation(Dependencies.Compose.material)
+    implementation(Dependencies.Compose.uiToolingPreview)
+    debugImplementation(Dependencies.Compose.debugUiTooling)
 }
