@@ -29,7 +29,7 @@ import com.tellme.core_ui.util.appShadow
 @Composable
 fun AppCard(
     modifier: Modifier = Modifier,
-    surfaceColor: Color?,
+    surfaceColor: Color? = null,
     content: @Composable () -> Unit
 ) {
     val density = LocalDensity.current.density
@@ -81,7 +81,7 @@ fun AppCardPreview() {
                     Spacer(modifier = Modifier.requiredHeight(24.dp))
 
 
-                    Text(text = "How are you today? ", minLines = 4, overflow = TextOverflow.Ellipsis)
+                    Text(text = "How are you today? ", minLines = 4, maxLines = 4, overflow = TextOverflow.Ellipsis)
                 }
             }
         }
