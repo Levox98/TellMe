@@ -57,6 +57,7 @@ dependencies {
     implementation(Dependencies.Compose.uiToolingPreview)
     implementation(Dependencies.Compose.material)
     implementation(Dependencies.Compose.iconsExtended)
+    implementation(Dependencies.Compose.util)
 
     implementation(Dependencies.Lifecycle.viewmodel)
 

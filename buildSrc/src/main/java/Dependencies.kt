@@ -10,8 +10,10 @@ object Dependencies {
         val ui = "androidx.compose.ui:ui"
         val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
         val material = "androidx.compose.material:material"
+        val material3 = "androidx.compose.material3:material3"
         val iconsExtended = "androidx.compose.material:material-icons-extended"
         val runtime = "androidx.compose.runtime:runtime"
+        val util = "androidx.compose.ui:ui-util"
 
         //For some reason this dependency isn't recognized when getting version through BOM
         val uiTestJUnit = "androidx.compose.ui:ui-test-junit4:$compose_junit_version"
