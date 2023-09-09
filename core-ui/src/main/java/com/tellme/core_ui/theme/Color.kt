@@ -9,6 +9,8 @@ val colorYellow = Color(0xFFF7C74A)
 val colorPurple = Color(0xFF5750A0)
 val colorRed = Color(0xFFD53F46)
 
+val colorTransparent = Color(0x00000000)
+
 
 class AppColors(
     val primary: Color,
@@ -18,7 +20,8 @@ class AppColors(
     val background: Color,
     val onBackground: Color,
     val surface: Color,
-    val button: Color
+    val button: Color,
+    val transparent: Color
 )
 
 val lightPalette = AppColors(
@@ -29,7 +32,8 @@ val lightPalette = AppColors(
     background = colorWhite,
     onBackground = colorBlack,
     surface = colorRed,
-    button = colorYellow
+    button = colorYellow,
+    transparent = colorTransparent
 )
 
 val darkPalette = AppColors(
@@ -40,5 +44,6 @@ val darkPalette = AppColors(
     background = colorWhite,
     onBackground = colorBlack,
     surface = colorRed,
-    button = colorYellow
+    button = colorYellow,
+    transparent = colorTransparent
 )
