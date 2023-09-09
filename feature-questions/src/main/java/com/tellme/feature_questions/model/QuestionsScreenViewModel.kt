@@ -4,7 +4,8 @@ import androidx.lifecycle.viewModelScope
 import com.tellme.core.BaseAction
 import com.tellme.core.BaseViewModel
 import com.tellme.data_questions.domain.entity.Question
-import com.tellme.feature_questions.usecase.GetQuestionsUseCase
+import com.tellme.feature_questions.usecase.GetQuestionsLocalUseCase
+import com.tellme.feature_questions.usecase.LoadQuestionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +29,8 @@ sealed class QuestionsScreenEvent {
 
 @HiltViewModel
 class QuestionsScreenViewModel @Inject constructor(
-    private val getQuestionsUseCase: GetQuestionsUseCase
+    private val loadQuestionsUseCase: LoadQuestionsUseCase,
+    private val getQuestionsLocalUseCase: GetQuestionsLocalUseCase
 ) : BaseViewModel<QuestionsScreenState, QuestionsScreenAction, QuestionsScreenEvent>(
     initialState = QuestionsScreenState(isLoading = false, isError = false, questions = listOf())
 ) {
@@ -47,11 +49,15 @@ class QuestionsScreenViewModel @Inject constructor(
 
     private fun getAllQuestions() {
         viewModelScope.launch(Dispatchers.IO) {
-            getQuestionsUseCase().collect { state ->
+            loadQuestionsUseCase().collect { state ->
                 withContext(Dispatchers.Main) {
                     when {
                         state.isError() -> {
-                            viewState = viewState.copy(isError = true, isLoading = false)
+                            viewState = if (getQuestionsLocal().isNotEmpty()) {
+                                viewState.copy(isLoading = false, questions = getQuestionsLocal())
+                            } else {
+                                viewState.copy(isError = true, isLoading = false)
+                            }
                         }
                         state.isLoading() -> {
                             viewState = viewState.copy(isLoading = true, isError = false)
@@ -64,4 +70,6 @@ class QuestionsScreenViewModel @Inject constructor(
             }
         }
     }
+
+    private suspend fun getQuestionsLocal(): List<Question> = getQuestionsLocalUseCase()
 }

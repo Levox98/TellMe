@@ -34,6 +34,8 @@ class QuestionsRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getQuestionsLocal(): List<Question> = questionDao.getQuestions().toDomain()
+
     override suspend fun getQuestionById(questionId: String?): Flow<Either<Question?>> = flow {
         emit(Either.loading())
 

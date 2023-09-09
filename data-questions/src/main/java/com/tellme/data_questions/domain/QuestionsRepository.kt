@@ -6,5 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface QuestionsRepository {
     suspend fun loadQuestions(): Flow<Either<List<Question>>>
+    suspend fun getQuestionsLocal(): List<Question>
     suspend fun getQuestionById(questionId: String?): Flow<Either<Question?>>
 }
