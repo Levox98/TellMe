@@ -47,6 +47,7 @@ dependencies {
     implementation(platform(Dependencies.Compose.bom))
     implementation(Dependencies.Compose.ui)
     implementation(Dependencies.Compose.material)
+    implementation(Dependencies.Compose.util)
     implementation(Dependencies.Compose.uiToolingPreview)
     debugImplementation(Dependencies.Compose.debugUiTooling)
 }
