@@ -3,6 +3,7 @@ package com.tellme.feature_questions.screen.components
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,7 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -52,7 +54,12 @@ fun DailyQuestionsPager(
                     scaleX = scale
                     scaleY = scale
                 }
-                .clickable { onQuestionClick(question) },
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null,
+                    enabled = true,
+                    onClick = { onQuestionClick(question) }
+                ),
             surfaceColor = AppTheme.colors.primary.copy(blue = AppTheme.colors.primary.blue * scale)
         ) {
             Column(
@@ -72,7 +79,6 @@ fun DailyQuestionsPager(
                 }
 
                 Spacer(modifier = Modifier.requiredHeight(24.dp))
-
 
                 Text(text = question.text, minLines = 4, maxLines = 4, overflow = TextOverflow.Ellipsis)
             }

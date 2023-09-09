@@ -47,9 +47,7 @@ fun AppCard(
         ) {
             content()
         }
-
     }
-
 }
 
 
@@ -79,7 +77,6 @@ fun AppCardPreview() {
                     }
 
                     Spacer(modifier = Modifier.requiredHeight(24.dp))
-
 
                     Text(text = "How are you today? ", minLines = 4, maxLines = 4, overflow = TextOverflow.Ellipsis)
                 }
