@@ -59,6 +59,7 @@ dependencies {
 
     implementation(Dependencies.Core.coreKtx)
     implementation(Dependencies.Lifecycle.runtime)
+    implementation(Dependencies.Lifecycle.activityCompose)
     implementation(Dependencies.Lifecycle.activity)
 
     implementation(Dependencies.Compose.ui)

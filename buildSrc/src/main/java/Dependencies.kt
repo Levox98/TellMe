@@ -37,11 +37,13 @@ object Dependencies {
     object Lifecycle {
         private const val lifecycle_version = "2.6.1"
         private const val viewmodel_version = "2.4.0"
-        private const val activity_version = "1.7.0"
+        private const val activity_compose_version = "1.7.0"
+        private const val activity_version = "1.8.0-beta01"
 
         val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
         val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:$viewmodel_version"
-        val activity = "androidx.activity:activity-compose:$activity_version"
+        val activityCompose = "androidx.activity:activity-compose:$activity_compose_version"
+        val activity = "androidx.activity:activity-ktx:$activity_version"
     }
 
     object Test {
