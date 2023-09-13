@@ -24,6 +24,9 @@ object Dependencies {
 
     object Kotlin {
         const val kotlin_version = "1.8.10"
+        private const val collections_version = "0.3.5"
+
+        const val collections = "org.jetbrains.kotlinx:kotlinx-collections-immutable:$collections_version"
     }
 
     object Core {

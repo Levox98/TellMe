@@ -41,6 +41,8 @@ android {
 
 dependencies {
 
+    implementation(Dependencies.Kotlin.collections)
+
     implementation(Dependencies.Core.coreKtx)
     implementation(Dependencies.Core.appCompat)
 

@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":data-questions"))
 
     implementation(Dependencies.Core.coreKtx)
+    implementation(Dependencies.Kotlin.collections)
 
     kapt(Dependencies.Hilt.kapt)
     implementation(Dependencies.Hilt.hilt)
