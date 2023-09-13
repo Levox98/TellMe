@@ -8,25 +8,31 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.tellme.core_ui.components.AppMainHeader
 import com.tellme.core_ui.components.AppSegmentHeader
+import com.tellme.core_ui.components.graph.AppGraph
 import com.tellme.core_ui.theme.AppTheme
 import com.tellme.feature_questions.model.QuestionsScreenAction
 import com.tellme.feature_questions.model.QuestionsScreenEvent
 import com.tellme.feature_questions.model.QuestionsScreenViewModel
 import com.tellme.feature_questions.screen.components.DailyQuestionsPager
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.onEach
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -118,7 +124,60 @@ fun QuestionsScreen(
             item { Spacer(modifier = Modifier.requiredHeight(20.dp)) }
 
             item {
-                //TODO mood graph
+                AppGraph(
+                    modifier = Modifier
+                        .padding(horizontal = 36.dp)
+                        .navigationBarsPadding(),
+                    graphHeader = {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 10.dp),
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = "11.09 — 17.09",
+                                style = AppTheme.typography.body2,
+                                color = AppTheme.colors.surface
+                            )
+                        }
+                    },
+                    filledDividerColor = AppTheme.colors.surface,
+                    rows = persistentListOf(1, 2, 3, 4, 5),
+                    columns = persistentListOf("mon", "tue", "wed", "thu", "fri", "sat", "sun"),
+                    rowTitle = {
+                        Text(
+                            text = "$it",
+                            style = AppTheme.typography.body2,
+                            textAlign = TextAlign.Center
+                        )
+                    },
+                    columnTitle = {
+                        Box(modifier = Modifier, contentAlignment = Alignment.Center) {
+                            Text(
+                                text = it,
+                                style = AppTheme.typography.body2,
+                                color = AppTheme.colors.surface,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                    },
+                    markedCells = persistentListOf(
+                        "mon" to 3,
+                        "tue" to 4,
+                        "wed" to 2,
+                        "thu" to 4,
+                        "fri" to 5,
+                        "sat" to 1,
+                        "sun" to 3
+                    ),
+                    markedCellContent = {
+                        Surface(
+                            modifier = Modifier.fillMaxSize(),
+                            color = AppTheme.colors.surface
+                        ) {}
+                    }
+                )
             }
         }
     }
