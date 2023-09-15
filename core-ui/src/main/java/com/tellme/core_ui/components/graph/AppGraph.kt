@@ -18,11 +18,18 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.tellme.core_ui.theme.AppTheme
 import kotlinx.collections.immutable.ImmutableList
@@ -48,6 +55,12 @@ fun <R, C> AppGraph(
     }.toImmutableList(),
     markedCellContent: @Composable (() -> Unit)? = null
 ) {
+    val density = LocalDensity.current
+
+    var cellSize by remember {
+        mutableStateOf(IntSize(0, 0))
+    }
+
     Column(
         modifier = modifier.fillMaxSize(),
     ) {
@@ -79,7 +92,10 @@ fun <R, C> AppGraph(
 
                         AppGraphCell(
                             modifier = Modifier
-                                .weight(1f),
+                                .weight(1f)
+                                .onSizeChanged {
+                                    cellSize = it
+                                },
                             contentAlignment = if (columnIndex == 0) Alignment.CenterStart else Alignment.Center
                         ) {
                             Row(
@@ -119,16 +135,12 @@ fun <R, C> AppGraph(
                                                             Alignment.BottomCenter
                                                         )
                                                 ) {
-                                                    Divider(
-                                                        modifier = Modifier
-                                                            .fillMaxWidth()
-                                                            .requiredHeight(2.dp),
-                                                        color = filledDividerColor
-                                                    )
-
                                                     Box(
                                                         modifier = Modifier
-                                                            .fillMaxHeight(.5f)
+                                                            .requiredHeightIn(
+                                                                min = 18.dp,
+                                                                max = (cellSize.height / density.density / 2 + 1).dp
+                                                            )
                                                     ) {
                                                         if (markedCellContent == null) {
                                                             Surface(
