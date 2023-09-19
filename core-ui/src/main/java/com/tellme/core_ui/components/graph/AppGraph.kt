@@ -213,7 +213,7 @@ fun AppGraphPreview() {
                             .padding(vertical = 10.dp),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Text(text = "App Graph Header", style = AppTheme.typography.h3)
+                        Text(text = "App Graph Header", style = AppTheme.typography.subtitle1)
                     }
                 },
                 rows = persistentListOf(1, 2, 3, 4, 5),
@@ -229,7 +229,7 @@ fun AppGraphPreview() {
                     Box(modifier = Modifier, contentAlignment = Alignment.Center) {
                         Text(
                             text = "$it",
-                            style = AppTheme.typography.h3,
+                            style = AppTheme.typography.subtitle1,
                             textAlign = TextAlign.Center
                         )
                     }

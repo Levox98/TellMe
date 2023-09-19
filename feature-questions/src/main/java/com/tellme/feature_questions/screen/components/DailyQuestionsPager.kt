@@ -72,7 +72,7 @@ fun DailyQuestionsPager(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = question.objectId, style = AppTheme.typography.h3)
+                    Text(text = question.objectId, style = AppTheme.typography.subtitle1)
 
                     Image(
                         painter = painterResource(id = R.drawable.ic_fire_emoji),

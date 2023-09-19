@@ -26,12 +26,12 @@ fun AppMainHeader(
             modifier = modifier,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = mainText, style = AppTheme.typography.h0)
+            Text(text = mainText, style = AppTheme.typography.h1)
 
             secondaryText?.let {
                 Spacer(modifier = Modifier.requiredWidth(12.dp))
 
-                Text(text = secondaryText, style = AppTheme.typography.h1)
+                Text(text = secondaryText, style = AppTheme.typography.subtitleAlt)
             }
         }
     }

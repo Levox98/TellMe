@@ -20,41 +20,83 @@ val fontFamilyKrofftsman = FontFamily(fonts = listOf(fontKrofftsman))
 val fontFamilyNunitoSans = FontFamily(fonts = listOf(fontNunitoSans))
 
 val defaultTextStyle = TextStyle(
-    fontFamily = FontFamily.Default,
+    fontFamily = fontFamilyKrofftsman,
     fontStyle = FontStyle.Normal,
     color = colorBlack
 )
 
-val typoH0 = defaultTextStyle.copy(fontFamily = fontFamilyKrofftsman, fontSize = 42.sp)
-val typoH1 = defaultTextStyle.copy(fontFamily = fontFamilyNunitoSans, fontSize = 32.sp)
-val typoH2 = defaultTextStyle.copy(fontFamily = fontFamilyKrofftsman, fontSize = 32.sp)
-val typoH3 = defaultTextStyle.copy(fontFamily = fontFamilyNunitoSans, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-val typoH4 = defaultTextStyle.copy(fontFamily = fontFamilyNunitoSans, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+val h1normal = defaultTextStyle.copy(
+    fontWeight = FontWeight.Normal,
+    fontSize = 42.sp,
+    lineHeight = 39.sp
+)
 
-val typoBody1 = defaultTextStyle.copy(fontFamily = fontFamilyNunitoSans, fontSize = 20.sp, fontWeight = FontWeight.Normal)
-val typoBody2 = defaultTextStyle.copy(fontFamily = fontFamilyNunitoSans, fontSize = 16.sp, fontWeight = FontWeight.Normal)
+val h2normal = defaultTextStyle.copy(
+    fontWeight = FontWeight.Normal,
+    fontSize = 32.sp,
+    lineHeight = 24.sp
+)
 
+val body1normal = defaultTextStyle.copy(
+    fontFamily = fontFamilyNunitoSans,
+    fontWeight = FontWeight.Normal,
+    fontSize = 20.sp,
+    lineHeight = 24.sp
+)
 
-val typoButton1 = defaultTextStyle.copy(fontFamily = fontFamilyNunitoSans, fontSize = 24.sp, fontWeight = FontWeight.Bold)
+val body2normal = defaultTextStyle.copy(
+    fontFamily = fontFamilyNunitoSans,
+    fontWeight = FontWeight.Normal,
+    fontSize = 16.sp,
+    lineHeight = 18.sp
+)
+
+val subtitle1bold = defaultTextStyle.copy(
+    fontFamily = fontFamilyNunitoSans,
+    fontWeight = FontWeight.Bold,
+    fontSize = 20.sp,
+    lineHeight = 24.sp
+)
+
+val subtitle2bold = defaultTextStyle.copy(
+    fontFamily = fontFamilyNunitoSans,
+    fontWeight = FontWeight.Bold,
+    fontSize = 16.sp,
+    lineHeight = 18.sp
+)
+
+val subtitleAltNormal = defaultTextStyle.copy(
+    fontFamily = fontFamilyNunitoSans,
+    fontWeight = FontWeight.Normal,
+    fontSize = 32.sp,
+    lineHeight = 36.sp
+)
+
+val button1bold = defaultTextStyle.copy(
+    fontFamily = fontFamilyNunitoSans,
+    fontWeight = FontWeight.Bold,
+    fontSize = 24.sp,
+    lineHeight = 24.sp
+)
 
 val typography = AppTypography(
-    h0 = typoH0,
-    h1 = typoH1,
-    h2 = typoH2,
-    h3 = typoH3,
-    h4 = typoH4,
-    body1 = typoBody1,
-    body2 = typoBody2,
-    button1 = typoButton1
+    h1 = h1normal,
+    h2 = h2normal,
+    body1 = body1normal,
+    body2 = body2normal,
+    subtitle1 = subtitle1bold,
+    subtitle2 = subtitle2bold,
+    subtitleAlt = subtitleAltNormal,
+    button1 = button1bold
 )
 
 class AppTypography(
-    val h0: TextStyle,
     val h1: TextStyle,
     val h2: TextStyle,
-    val h3: TextStyle,
-    val h4: TextStyle,
     val body1: TextStyle,
     val body2: TextStyle,
+    val subtitle1: TextStyle,
+    val subtitle2: TextStyle,
+    val subtitleAlt: TextStyle,
     val button1: TextStyle
 )
