@@ -1,13 +1,12 @@
 package com.tellme.core_ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 
 class AppShapes(
-    val small: Shape,
-    val medium: Shape,
-    val large: Shape
+    val small: RoundedCornerShape,
+    val medium: RoundedCornerShape,
+    val large: RoundedCornerShape
 )
 
 val shapes = AppShapes(
