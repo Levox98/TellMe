@@ -65,7 +65,6 @@ fun Modifier.appShadow(
     offsetX: Dp = 0.dp,
     offsetY: Dp = 0.dp,
     shape: CornerBasedShape,
-    density: Density,
     drawBottomShadow: Boolean = true
 ) = then(
     drawBehind {
@@ -78,7 +77,7 @@ fun Modifier.appShadow(
             val rightPixel = size.width + leftPixel
             val bottomPixel = size.height + topPixel
 
-            val cornerRadius = shape.bottomEnd.toPx(this.size, density)
+            val cornerRadius = shape.bottomEnd.toPx(this.size, Density(this.density))
 
             canvas.drawRoundRect(
                 left = leftPixel,
