@@ -24,9 +24,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.tellme.core_ui.components.AppMainHeader
-import com.tellme.core_ui.components.AppSegmentHeader
 import com.tellme.core_ui.components.graph.AppGraph
+import com.tellme.core_ui.components.header.AppMainHeader
+import com.tellme.core_ui.components.header.AppSegmentHeader
 import com.tellme.core_ui.theme.AppTheme
 import com.tellme.feature_questions.model.QuestionsScreenAction
 import com.tellme.feature_questions.model.QuestionsScreenEvent

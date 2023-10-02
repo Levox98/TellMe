@@ -1,4 +1,4 @@
-package com.tellme.core_ui.components
+package com.tellme.core_ui.components.header
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
