@@ -34,6 +34,15 @@ class QuestionsScreenViewModel @Inject constructor(
 ) : BaseViewModel<QuestionsScreenState, QuestionsScreenAction, QuestionsScreenEvent>(
     initialState = QuestionsScreenState(isLoading = false, isError = false, questions = listOf())
 ) {
+
+    val emojiList = listOf(
+        com.tellme.core_ui.R.drawable.ic_emoji_frown_sweating,
+        com.tellme.core_ui.R.drawable.ic_emoji_frown,
+        com.tellme.core_ui.R.drawable.ic_emoji_neutral,
+        com.tellme.core_ui.R.drawable.ic_emoji_smile,
+        com.tellme.core_ui.R.drawable.ic_emoji_grinning_smiling_eyes
+    )
+
     init {
         obtainEvent(QuestionsScreenEvent.GetQuestionsEvent)
     }
