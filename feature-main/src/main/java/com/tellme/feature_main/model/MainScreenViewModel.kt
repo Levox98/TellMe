@@ -1,38 +1,38 @@
-package com.tellme.feature_questions.model
+package com.tellme.feature_main.model
 
 import androidx.lifecycle.viewModelScope
 import com.tellme.core.BaseAction
 import com.tellme.core.BaseViewModel
 import com.tellme.data_questions.domain.entity.Question
-import com.tellme.feature_questions.usecase.GetQuestionsLocalUseCase
-import com.tellme.feature_questions.usecase.LoadQuestionsUseCase
+import com.tellme.feature_main.usecase.GetQuestionsLocalUseCase
+import com.tellme.feature_main.usecase.LoadQuestionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-data class QuestionsScreenState(
+data class MainScreenState(
     val isLoading: Boolean,
     val isError: Boolean,
     val questions: List<Question> = emptyList()
 )
 
-sealed class QuestionsScreenAction : BaseAction() {
-    class GoToQuestionDetail(val questionId: String) : QuestionsScreenAction()
+sealed class MainScreenAction : BaseAction() {
+    class GoToQuestionDetail(val questionId: String) : MainScreenAction()
 }
 
-sealed class QuestionsScreenEvent {
-    object GetQuestionsEvent : QuestionsScreenEvent()
-    class GoToAnswerQuestionEvent(val questionId: String) : QuestionsScreenEvent()
+sealed class MainScreenEvent {
+    object GetMainEvent : MainScreenEvent()
+    class GoToAnswerQuestionEvent(val questionId: String) : MainScreenEvent()
 }
 
 @HiltViewModel
-class QuestionsScreenViewModel @Inject constructor(
+class MainScreenViewModel @Inject constructor(
     private val loadQuestionsUseCase: LoadQuestionsUseCase,
     private val getQuestionsLocalUseCase: GetQuestionsLocalUseCase
-) : BaseViewModel<QuestionsScreenState, QuestionsScreenAction, QuestionsScreenEvent>(
-    initialState = QuestionsScreenState(isLoading = false, isError = false, questions = listOf())
+) : BaseViewModel<MainScreenState, MainScreenAction, MainScreenEvent>(
+    initialState = MainScreenState(isLoading = false, isError = false, questions = listOf())
 ) {
 
     val emojiList = listOf(
@@ -44,14 +44,14 @@ class QuestionsScreenViewModel @Inject constructor(
     )
 
     init {
-        obtainEvent(QuestionsScreenEvent.GetQuestionsEvent)
+        obtainEvent(MainScreenEvent.GetMainEvent)
     }
 
-    override fun obtainEvent(viewEvent: QuestionsScreenEvent) {
+    override fun obtainEvent(viewEvent: MainScreenEvent) {
         when (viewEvent) {
-            is QuestionsScreenEvent.GetQuestionsEvent -> getAllQuestions()
-            is QuestionsScreenEvent.GoToAnswerQuestionEvent -> {
-                sendAction(QuestionsScreenAction.GoToQuestionDetail(viewEvent.questionId))
+            is MainScreenEvent.GetMainEvent -> getAllQuestions()
+            is MainScreenEvent.GoToAnswerQuestionEvent -> {
+                sendAction(MainScreenAction.GoToQuestionDetail(viewEvent.questionId))
             }
         }
     }

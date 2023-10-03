@@ -1,4 +1,4 @@
-package com.tellme.feature_questions.screen.components
+package com.tellme.feature_main.screen.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image

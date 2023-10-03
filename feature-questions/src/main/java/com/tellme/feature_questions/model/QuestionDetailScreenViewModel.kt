@@ -7,8 +7,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.tellme.core.BaseAction
 import com.tellme.core.BaseViewModel
+import com.tellme.core_navigation.QuestionFeatureNavScreen
 import com.tellme.data_questions.domain.entity.Question
-import com.tellme.feature_questions.QuestionFeatureNavScreen
 import com.tellme.feature_questions.usecase.GetQuestionByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

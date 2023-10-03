@@ -1,4 +1,4 @@
-package com.tellme.feature_questions.screen
+package com.tellme.feature_main.screen
 
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -30,17 +30,17 @@ import com.tellme.core_ui.components.graph.AppGraph
 import com.tellme.core_ui.components.header.AppMainHeader
 import com.tellme.core_ui.components.header.AppSegmentHeader
 import com.tellme.core_ui.theme.AppTheme
-import com.tellme.feature_questions.model.QuestionsScreenAction
-import com.tellme.feature_questions.model.QuestionsScreenEvent
-import com.tellme.feature_questions.model.QuestionsScreenViewModel
-import com.tellme.feature_questions.screen.components.DailyQuestionsPager
+import com.tellme.feature_main.model.MainScreenViewModel
+import com.tellme.feature_main.model.MainScreenAction
+import com.tellme.feature_main.model.MainScreenEvent
+import com.tellme.feature_main.screen.components.DailyQuestionsPager
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.onEach
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun QuestionsScreen(
-    vm: QuestionsScreenViewModel,
+fun MainScreen(
+    vm: MainScreenViewModel,
     goToDetailScreen: (questionId: String?) -> Unit
 ) {
 
@@ -53,7 +53,7 @@ fun QuestionsScreen(
     LaunchedEffect(viewActions) {
         viewActions.onEach { action ->
             when (action) {
-                is QuestionsScreenAction.GoToQuestionDetail -> goToDetailScreen(action.questionId)
+                is MainScreenAction.GoToQuestionDetail -> goToDetailScreen(action.questionId)
             }
         }.collect {
             Log.d("APP_NAV", "$it")
@@ -106,7 +106,7 @@ fun QuestionsScreen(
                         onQuestionClick = remember {
                             { question ->
                                 vm.obtainEvent(
-                                    QuestionsScreenEvent.GoToAnswerQuestionEvent(questionId = question.objectId)
+                                    MainScreenEvent.GoToAnswerQuestionEvent(questionId = question.objectId)
                                 )
                             }
                         }

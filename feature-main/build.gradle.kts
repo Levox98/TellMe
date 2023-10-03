@@ -44,7 +44,9 @@ android {
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":core-navigation"))
     implementation(project(":core-ui"))
+    implementation(project(":data-questions"))
 
     implementation(Dependencies.Core.coreKtx)
     implementation(Dependencies.Kotlin.collections)

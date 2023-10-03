@@ -1,16 +1,11 @@
-package com.tellme.feature_questions
+package com.tellme.core_navigation
 
 sealed class QuestionFeatureNavScreen {
     abstract val route: String
 
-    object QuestionsRoot : QuestionFeatureNavScreen() {
+    object Root : QuestionFeatureNavScreen() {
         override val route: String
-            get() = "questions_start"
-    }
-
-    object QuestionsList : QuestionFeatureNavScreen() {
-        override val route: String
-            get() = "questions_list"
+            get() = "questions_root"
     }
 
     object QuestionDetails : QuestionFeatureNavScreen() {
