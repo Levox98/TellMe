@@ -11,22 +11,22 @@ android {
         minSdk = Config.minSdkVersion
         targetSdk = Config.targetSdkVersion
 
-        testInstrumentationRunner = Config.testInstrumentationRunner
-        consumerProguardFiles(Config.consumerProguardFiles)
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile(Config.defaultProguardFilename),
-                Config.proguardProFilename
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = Config.sourceCompatibility
+        targetCompatibility = Config.targetCompatibility
     }
     kotlinOptions {
         jvmTarget = Config.jvmTarget
