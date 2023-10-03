@@ -44,9 +44,11 @@ android {
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":core-ui"))
     implementation(project(":data-questions"))
 
     implementation(Dependencies.Core.coreKtx)
+    implementation(Dependencies.Kotlin.collections)
 
     kapt(Dependencies.Hilt.kapt)
     implementation(Dependencies.Hilt.hilt)
@@ -56,6 +58,7 @@ dependencies {
     implementation(Dependencies.Compose.uiToolingPreview)
     implementation(Dependencies.Compose.material)
     implementation(Dependencies.Compose.iconsExtended)
+    implementation(Dependencies.Compose.util)
 
     implementation(Dependencies.Lifecycle.viewmodel)
 

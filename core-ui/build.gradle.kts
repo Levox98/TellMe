@@ -41,9 +41,17 @@ android {
 
 dependencies {
 
+    implementation(Dependencies.Kotlin.collections)
+
     implementation(Dependencies.Core.coreKtx)
+    implementation(Dependencies.Core.appCompat)
+
+    implementation(Dependencies.Lifecycle.activity)
 
     implementation(platform(Dependencies.Compose.bom))
     implementation(Dependencies.Compose.ui)
     implementation(Dependencies.Compose.material)
+    implementation(Dependencies.Compose.util)
+    implementation(Dependencies.Compose.uiToolingPreview)
+    debugImplementation(Dependencies.Compose.debugUiTooling)
 }

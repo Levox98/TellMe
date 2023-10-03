@@ -1,5 +1,8 @@
 package com.tellme.feature_questions.model
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.tellme.core.BaseAction
@@ -32,6 +35,7 @@ class QuestionDetailScreenViewModel @Inject constructor(
 ) : BaseViewModel<QuestionDetailScreenState, QuestionDetailScreenAction, QuestionDetailScreenEvent>(
     initialState = QuestionDetailScreenState(isLoading = false, isError = false, question = null)
 ) {
+    var answerValue by mutableStateOf("")
 
     private val questionId: String? =
         savedStateHandle[QuestionFeatureNavScreen.QuestionDetails.QUESTION_ID]
@@ -44,6 +48,10 @@ class QuestionDetailScreenViewModel @Inject constructor(
         when (viewEvent) {
             is QuestionDetailScreenEvent.GetQuestionEvent -> getQuestion()
         }
+    }
+
+    fun onAnswerChange(s: String) {
+        answerValue = s
     }
 
     private fun getQuestion() {
