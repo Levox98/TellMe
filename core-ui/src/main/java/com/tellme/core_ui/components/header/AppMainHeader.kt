@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tellme.core_ui.theme.AppTheme
@@ -17,7 +18,9 @@ import com.tellme.core_ui.theme.AppTheme
 fun AppMainHeader(
     modifier: Modifier = Modifier,
     mainText: String,
-    secondaryText: String? = null
+    secondaryText: String? = null,
+    mainTextStyle: TextStyle = AppTheme.typography.h1,
+    secondaryTextStyle: TextStyle = AppTheme.typography.subtitleAlt
 ) {
     Surface(
         color = AppTheme.colors.transparent
@@ -26,12 +29,12 @@ fun AppMainHeader(
             modifier = modifier,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = mainText, style = AppTheme.typography.h1)
+            Text(text = mainText, style = mainTextStyle)
 
             secondaryText?.let {
                 Spacer(modifier = Modifier.requiredWidth(12.dp))
 
-                Text(text = secondaryText, style = AppTheme.typography.subtitleAlt)
+                Text(text = secondaryText, style = secondaryTextStyle)
             }
         }
     }
