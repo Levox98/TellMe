@@ -6,17 +6,17 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.tellme.core_navigation.QuestionFeatureNavScreen
+import com.tellme.core_navigation.QuestionNavScreen
 import com.tellme.feature_questions.screen.QuestionDetailScreen
 
 fun NavGraphBuilder.addQuestionsFeature() {
     navigation(
-        startDestination = QuestionFeatureNavScreen.QuestionDetails.route,
-        route = QuestionFeatureNavScreen.Root.route
+        startDestination = QuestionNavScreen.QuestionDetails.route,
+        route = QuestionNavScreen.Root.route
     ) {
         composable(
-            route = QuestionFeatureNavScreen.QuestionDetails.route,
-            arguments = listOf(navArgument(QuestionFeatureNavScreen.QuestionDetails.QUESTION_ID) {
+            route = QuestionNavScreen.QuestionDetails.route,
+            arguments = listOf(navArgument(QuestionNavScreen.QuestionDetails.QUESTION_ID) {
                 type = NavType.StringType
             })
         ) {

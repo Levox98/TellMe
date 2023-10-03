@@ -1,14 +1,14 @@
 package com.tellme.core_navigation
 
-sealed class QuestionFeatureNavScreen {
+sealed class QuestionNavScreen {
     abstract val route: String
 
-    object Root : QuestionFeatureNavScreen() {
+    object Root : QuestionNavScreen() {
         override val route: String
             get() = "questions_root"
     }
 
-    object QuestionDetails : QuestionFeatureNavScreen() {
+    object QuestionDetails : QuestionNavScreen() {
         const val QUESTION_ID = "questionId"
 
         override val route: String
