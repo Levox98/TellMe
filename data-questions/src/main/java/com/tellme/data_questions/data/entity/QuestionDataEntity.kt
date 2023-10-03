@@ -12,5 +12,6 @@ data class QuestionDataEntity(
     @PrimaryKey
     val objectId: String,
     val questionText: String,
-    val createdAt: Date
+    val createdAt: Date,
+    val assignedDate: Date
 )
