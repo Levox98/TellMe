@@ -24,8 +24,8 @@ class QuestionsRepositoryImpl @Inject constructor(
         result.onError { emit(Either.error(result.error ?: AppError.Unknown())) }
 
         result.onSuccess { questionList ->
-            questionList?.toData()?.let {
-                questionDao.insertQuestions(it)
+            questionList?.toData()?.let { questionDataEntityList ->
+                questionDao.insertQuestions(questionDataEntityList.sortedBy { it.assignedDate })
             }
 
             val listToEmit = questionDao.getQuestions().toDomain()

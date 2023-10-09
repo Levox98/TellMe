@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
+import com.tellme.core.toHumanString
 import com.tellme.core_ui.R
 import com.tellme.core_ui.components.AppCard
 import com.tellme.core_ui.components.AppHorizontalPager
@@ -72,7 +73,7 @@ fun DailyQuestionsPager(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = question.objectId, style = AppTheme.typography.subtitle1)
+                    Text(text = question.assignedDate.toHumanString(), style = AppTheme.typography.subtitle1)
 
                     Image(
                         painter = painterResource(id = R.drawable.ic_fire_emoji),
