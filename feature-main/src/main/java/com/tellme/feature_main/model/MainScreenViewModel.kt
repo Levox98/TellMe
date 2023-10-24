@@ -10,12 +10,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Calendar
+import java.util.Locale
 import javax.inject.Inject
 
 data class MainScreenState(
     val isLoading: Boolean,
     val isError: Boolean,
-    val questions: List<Question> = emptyList()
+    val questions: List<Question> = emptyList(),
+    val initialPagerIndex: Int = 0
 )
 
 sealed class MainScreenAction : BaseAction() {
@@ -32,7 +35,12 @@ class MainScreenViewModel @Inject constructor(
     private val loadQuestionsUseCase: LoadQuestionsUseCase,
     private val getQuestionsLocalUseCase: GetQuestionsLocalUseCase
 ) : BaseViewModel<MainScreenState, MainScreenAction, MainScreenEvent>(
-    initialState = MainScreenState(isLoading = false, isError = false, questions = listOf())
+    initialState = MainScreenState(
+        isLoading = false,
+        isError = false,
+        questions = listOf(),
+        initialPagerIndex = 0
+    )
 ) {
 
     val emojiList = listOf(
@@ -42,6 +50,8 @@ class MainScreenViewModel @Inject constructor(
         com.tellme.core_ui.R.drawable.ic_emoji_smile,
         com.tellme.core_ui.R.drawable.ic_emoji_grinning_smiling_eyes
     )
+
+    private val currentDate = Calendar.getInstance(Locale.getDefault())
 
     init {
         obtainEvent(MainScreenEvent.GetMainEvent)
@@ -68,11 +78,26 @@ class MainScreenViewModel @Inject constructor(
                                 viewState.copy(isError = true, isLoading = false)
                             }
                         }
+
                         state.isLoading() -> {
                             viewState = viewState.copy(isLoading = true, isError = false)
                         }
+
                         state.isSuccess() -> {
-                            viewState = viewState.copy(questions = state.data ?: emptyList(), isLoading = false)
+
+                            val index = state.data?.indexOfFirst { question ->
+                                val questionDate = Calendar.getInstance(Locale.getDefault())
+                                questionDate.time = question.assignedDate
+
+                                "${currentDate.get(Calendar.DAY_OF_MONTH)}.${currentDate.get(Calendar.MONTH)}.${currentDate.get(Calendar.YEAR)}" ==
+                                        "${questionDate.get(Calendar.DAY_OF_MONTH)}.${questionDate.get(Calendar.MONTH)}.${questionDate.get(Calendar.YEAR)}"
+                            }
+
+                            viewState = viewState.copy(
+                                questions = state.data ?: emptyList(),
+                                isLoading = false,
+                                initialPagerIndex = index ?: 0
+                            )
                         }
                     }
                 }

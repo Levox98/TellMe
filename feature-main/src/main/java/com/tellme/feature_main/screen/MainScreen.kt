@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -49,6 +50,9 @@ fun MainScreen(
 
     val questions = viewState.value.questions
     val emojiList = vm.emojiList
+    val initialIndex = viewState.value.initialPagerIndex
+
+    val pagerState = rememberPagerState(initialPage = initialIndex)
 
     LaunchedEffect(viewActions) {
         viewActions.onEach { action ->
@@ -58,6 +62,10 @@ fun MainScreen(
         }.collect {
             Log.d("APP_NAV", "$it")
         }
+    }
+
+    LaunchedEffect(viewState.value.initialPagerIndex) {
+        pagerState.animateScrollToPage(initialIndex)
     }
 
     Box(
@@ -102,6 +110,7 @@ fun MainScreen(
                     }
                 } else {
                     DailyQuestionsPager(
+                        state = pagerState,
                         questions = questions,
                         onQuestionClick = remember {
                             { question ->
