@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.tellme.core.toHumanString
 import com.tellme.core_ui.R
 import com.tellme.core_ui.components.AppEmotionRow
 import com.tellme.core_ui.components.AppMultilineTextField
@@ -52,7 +53,7 @@ fun QuestionDetailScreen(vm: QuestionDetailScreenViewModel) {
             ) {
                 AppMainHeader(
                     modifier = Modifier.padding(end = 24.dp),
-                    mainText = "05.05",
+                    mainText = question?.assignedDate?.toHumanString()?.dropLast(5) ?: "QUESTION",
                     mainTextStyle = AppTheme.typography.subtitleAlt
                 )
                 Icon(

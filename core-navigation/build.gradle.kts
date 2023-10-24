@@ -4,12 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.tellme.core"
+    namespace = "com.tellme.core_navigation"
     compileSdk = Config.compileSdkVersion
 
     defaultConfig {
         minSdk = Config.minSdkVersion
-        targetSdk = Config.targetSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,7 +34,20 @@ android {
 
 dependencies {
 
+    implementation(project(":core"))
+
     implementation(Dependencies.Core.coreKtx)
+    implementation(Dependencies.Kotlin.collections)
+
+    implementation(platform(Dependencies.Compose.bom))
+    implementation(Dependencies.Compose.ui)
+    implementation(Dependencies.Compose.uiToolingPreview)
+    implementation(Dependencies.Compose.material)
+    implementation(Dependencies.Compose.iconsExtended)
+    implementation(Dependencies.Compose.util)
 
     implementation(Dependencies.Lifecycle.viewmodel)
+
+    implementation(Dependencies.Navigation.compose)
+    implementation(Dependencies.Navigation.hilt)
 }

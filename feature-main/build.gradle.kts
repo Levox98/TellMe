@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tellme.core_network"
+    namespace = "com.tellme.feature_main"
     compileSdk = Config.compileSdkVersion
 
     defaultConfig {
@@ -33,21 +33,36 @@ android {
     kotlinOptions {
         jvmTarget = Config.jvmTarget
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Dependencies.Compose.compose_compiler_version
+    }
 }
 
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":core-navigation"))
+    implementation(project(":core-ui"))
+    implementation(project(":data-questions"))
 
     implementation(Dependencies.Core.coreKtx)
+    implementation(Dependencies.Kotlin.collections)
 
     kapt(Dependencies.Hilt.kapt)
     implementation(Dependencies.Hilt.hilt)
 
-    implementation(Dependencies.Retrofit.retrofit)
-    implementation(Dependencies.Retrofit.gsonConverter)
+    implementation(platform(Dependencies.Compose.bom))
+    implementation(Dependencies.Compose.ui)
+    implementation(Dependencies.Compose.uiToolingPreview)
+    implementation(Dependencies.Compose.material)
+    implementation(Dependencies.Compose.iconsExtended)
+    implementation(Dependencies.Compose.util)
 
-    implementation(platform(Dependencies.OkHttp.bom))
-    implementation(Dependencies.OkHttp.okHttp)
-    implementation(Dependencies.OkHttp.interceptor)
+    implementation(Dependencies.Lifecycle.viewmodel)
+
+    implementation(Dependencies.Navigation.compose)
+    implementation(Dependencies.Navigation.hilt)
 }

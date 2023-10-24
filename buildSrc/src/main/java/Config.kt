@@ -1,3 +1,5 @@
+import org.gradle.api.JavaVersion
+
 object Config {
 
     const val namespace = "com.tellme"
@@ -9,13 +11,8 @@ object Config {
     const val versionCode = 1
     const val versionName = "1.0"
 
-    const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-    const val defaultProguardFilename = "proguard-android-optimize.txt"
-    const val proguardProFilename = "proguard-rules.pro"
-    const val consumerProguardFiles = "consumer-rules.pro"
-
     const val jvmTarget = "1.8"
 
-    const val exclude = "/META-INF/{AL2.0,LGPL2.1}"
+    val sourceCompatibility = JavaVersion.VERSION_1_8
+    val targetCompatibility = JavaVersion.VERSION_1_8
 }

@@ -16,7 +16,7 @@ android {
         versionCode = Config.versionCode
         versionName = Config.versionName
 
-        testInstrumentationRunner = Config.testInstrumentationRunner
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -25,12 +25,15 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile(Config.defaultProguardFilename), Config.proguardProFilename)
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = Config.sourceCompatibility
+        targetCompatibility = Config.targetCompatibility
     }
     kotlinOptions {
         jvmTarget = Config.jvmTarget
@@ -43,7 +46,7 @@ android {
     }
     packagingOptions {
         resources {
-            excludes += Config.exclude
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }
@@ -51,8 +54,10 @@ android {
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":core-navigation"))
     implementation(project(":core-network"))
     implementation(project(":core-ui"))
+    implementation(project(":feature-main"))
     implementation(project(":feature-questions"))
 
     implementation(platform(Dependencies.Compose.bom))

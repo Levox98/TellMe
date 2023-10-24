@@ -1,4 +1,4 @@
-package com.tellme.feature_questions.usecase
+package com.tellme.feature_main.usecase
 
 import com.tellme.data_questions.domain.QuestionsRepository
 import javax.inject.Inject
