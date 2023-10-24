@@ -10,8 +10,10 @@ object Dependencies {
         val ui = "androidx.compose.ui:ui"
         val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
         val material = "androidx.compose.material:material"
+        val material3 = "androidx.compose.material3:material3"
         val iconsExtended = "androidx.compose.material:material-icons-extended"
         val runtime = "androidx.compose.runtime:runtime"
+        val util = "androidx.compose.ui:ui-util"
 
         //For some reason this dependency isn't recognized when getting version through BOM
         val uiTestJUnit = "androidx.compose.ui:ui-test-junit4:$compose_junit_version"
@@ -22,22 +24,29 @@ object Dependencies {
 
     object Kotlin {
         const val kotlin_version = "1.8.10"
+        private const val collections_version = "0.3.5"
+
+        const val collections = "org.jetbrains.kotlinx:kotlinx-collections-immutable:$collections_version"
     }
 
     object Core {
         private const val core_version = "1.9.0"
+        private const val appcompat_version = "1.6.1"
 
         val coreKtx = "androidx.core:core-ktx:$core_version"
+        val appCompat = "androidx.appcompat:appcompat:$appcompat_version"
     }
 
     object Lifecycle {
         private const val lifecycle_version = "2.6.1"
         private const val viewmodel_version = "2.4.0"
-        private const val activity_version = "1.7.0"
+        private const val activity_compose_version = "1.7.0"
+        private const val activity_version = "1.8.0-beta01"
 
         val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
         val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:$viewmodel_version"
-        val activity = "androidx.activity:activity-compose:$activity_version"
+        val activityCompose = "androidx.activity:activity-compose:$activity_compose_version"
+        val activity = "androidx.activity:activity-ktx:$activity_version"
     }
 
     object Test {
@@ -79,5 +88,13 @@ object Dependencies {
         const val api = "androidx.room:room-runtime:$version"
         const val kapt = "androidx.room:room-compiler:$version"
         const val room = "androidx.room:room-ktx:$version"
+    }
+
+    object Navigation {
+        private const val composeNavVersion = "2.6.0"
+        private const val hiltNavVersion = "1.0.0"
+
+        const val compose = "androidx.navigation:navigation-compose:$composeNavVersion"
+        const val hilt = "androidx.hilt:hilt-navigation-compose:$hiltNavVersion"
     }
 }

@@ -31,3 +31,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "TellMe"
 include (":app")
+include(":core")
+include(":core-network")
+include(":core-ui")
+include(":data-questions")
+include(":feature-questions")
+include(":feature-main")
+include(":core-navigation")
