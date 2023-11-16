@@ -42,7 +42,6 @@ fun MainScreen(
 ) {
 
     val viewState = vm.viewStates.collectAsState()
-    val viewActions = vm.viewActions
 
     val questions = viewState.value.questions
     val emojiList = vm.emojiList
@@ -50,6 +49,7 @@ fun MainScreen(
 
     val pagerState = rememberPagerState(initialPage = initialIndex)
 
+    //TODO: replace this with correct scrolling to question
     LaunchedEffect(viewState.value.initialPagerIndex) {
         pagerState.animateScrollToPage(initialIndex)
     }
