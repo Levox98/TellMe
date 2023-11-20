@@ -1,7 +1,8 @@
 package com.tellme.core_navigation
 
-import android.util.Log
 import androidx.navigation.NavHostController
+import com.tellme.core.AppError
+import com.tellme.core.AppErrorData
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,12 +23,15 @@ class NavigationManager @Inject constructor() {
     fun navigate(destination: BaseNav) {
         when {
             navController == null -> {
-                Log.e(NAV_LOG_TAG, "Navigation manager NavHostController instance is null")
+                AppError.error(
+                    code = AppErrorData.Navigation.code,
+                    message = "Navigation manager's NavHostController instance is null"
+                )
                 return
             }
 
             destination.route == "" -> {
-                Log.e(NAV_LOG_TAG, "The navigation destination has no route")
+                AppError.Navigation(message = "The navigation destination has no route")
                 return
             }
 
@@ -37,7 +41,10 @@ class NavigationManager @Inject constructor() {
                         popUpTo(destination.route) { inclusive = destination.first }
                     }
                 } catch (e: Exception) {
-                    Log.e(NAV_LOG_TAG, "Couldn't navigate to route: ${destination.route}. Error: ${e.message}")
+                    AppError.error(
+                        code = AppErrorData.Navigation.code,
+                        message = "Couldn't navigate to route: ${destination.route}. Error: ${e.message}"
+                    )
                 }
             }
         }
@@ -45,8 +52,8 @@ class NavigationManager @Inject constructor() {
         try {
             navController?.navigate(destination.route)
         } catch (e: Exception) {
-            Log.e(
-                NAV_LOG_TAG,
+            AppError.error(
+                AppErrorData.Navigation.code,
                 "Tried navigating to ${destination.route} with exception: ${e.localizedMessage}"
             )
         }
@@ -66,9 +73,5 @@ class NavigationManager @Inject constructor() {
      */
     fun initialize(navController: NavHostController) {
         this.navController = navController
-    }
-
-    companion object {
-        private const val NAV_LOG_TAG = "LOG_NAV"
     }
 }
