@@ -7,12 +7,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.tellme.core_navigation.NavigationManager
 import com.tellme.core_ui.theme.AppTheme
 import com.tellme.core_ui.theme.transparentSystemBarStyle
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var navigationManager: NavigationManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         enableEdgeToEdge(
@@ -22,7 +28,7 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         setContent {
-            AppScreen()
+            AppScreen(navigationManager = navigationManager)
         }
     }
 }

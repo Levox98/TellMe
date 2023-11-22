@@ -11,11 +11,11 @@ import com.tellme.feature_questions.screen.QuestionDetailScreen
 
 fun NavGraphBuilder.addQuestionsFeature() {
     navigation(
-        startDestination = QuestionNavScreen.QuestionDetails.route,
+        startDestination = QuestionNavScreen.QuestionDetails().route,
         route = QuestionNavScreen.Root.route
     ) {
         composable(
-            route = QuestionNavScreen.QuestionDetails.route,
+            route = QuestionNavScreen.QuestionDetails().route,
             arguments = listOf(navArgument(QuestionNavScreen.QuestionDetails.QUESTION_ID) {
                 type = NavType.StringType
             })

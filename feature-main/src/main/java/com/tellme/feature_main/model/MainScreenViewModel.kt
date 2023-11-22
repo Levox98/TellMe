@@ -3,11 +3,14 @@ package com.tellme.feature_main.model
 import androidx.lifecycle.viewModelScope
 import com.tellme.core.BaseAction
 import com.tellme.core.BaseViewModel
+import com.tellme.core_navigation.NavigationManager
+import com.tellme.core_navigation.QuestionNavScreen
 import com.tellme.data_questions.domain.entity.Question
 import com.tellme.feature_main.usecase.GetQuestionsLocalUseCase
 import com.tellme.feature_main.usecase.LoadQuestionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Calendar
@@ -32,6 +35,7 @@ sealed class MainScreenEvent {
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
+    private val navigationManager: NavigationManager,
     private val loadQuestionsUseCase: LoadQuestionsUseCase,
     private val getQuestionsLocalUseCase: GetQuestionsLocalUseCase
 ) : BaseViewModel<MainScreenState, MainScreenAction, MainScreenEvent>(
@@ -55,6 +59,7 @@ class MainScreenViewModel @Inject constructor(
 
     init {
         obtainEvent(MainScreenEvent.GetMainEvent)
+        collectActions()
     }
 
     override fun obtainEvent(viewEvent: MainScreenEvent) {
@@ -62,6 +67,18 @@ class MainScreenViewModel @Inject constructor(
             is MainScreenEvent.GetMainEvent -> getAllQuestions()
             is MainScreenEvent.GoToAnswerQuestionEvent -> {
                 sendAction(MainScreenAction.GoToQuestionDetail(viewEvent.questionId))
+            }
+        }
+    }
+
+    private fun collectActions() {
+        viewModelScope.launch(Dispatchers.IO) {
+            viewActions.collectLatest { action ->
+                withContext(Dispatchers.Main) {
+                    when (action) {
+                        is MainScreenAction.GoToQuestionDetail -> navigateToQuestion(action.questionId)
+                    }
+                }
             }
         }
     }
@@ -103,6 +120,10 @@ class MainScreenViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun navigateToQuestion(questionId: String) {
+        navigationManager.navigate(QuestionNavScreen.QuestionDetails(questionId))
     }
 
     private suspend fun getQuestionsLocal(): List<Question> = getQuestionsLocalUseCase()

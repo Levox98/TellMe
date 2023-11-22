@@ -1,7 +1,6 @@
 package com.tellme.core_navigation
 
-sealed class MainNavScreen {
-    abstract val route: String
+sealed class MainNavScreen : BaseNav() {
 
     object Root : MainNavScreen() {
         override val route: String

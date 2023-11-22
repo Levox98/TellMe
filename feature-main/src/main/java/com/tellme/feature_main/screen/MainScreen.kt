@@ -1,6 +1,5 @@
 package com.tellme.feature_main.screen
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -31,22 +30,18 @@ import com.tellme.core_ui.components.graph.AppGraph
 import com.tellme.core_ui.components.header.AppMainHeader
 import com.tellme.core_ui.components.header.AppSegmentHeader
 import com.tellme.core_ui.theme.AppTheme
-import com.tellme.feature_main.model.MainScreenViewModel
-import com.tellme.feature_main.model.MainScreenAction
 import com.tellme.feature_main.model.MainScreenEvent
+import com.tellme.feature_main.model.MainScreenViewModel
 import com.tellme.feature_main.screen.components.DailyQuestionsPager
 import kotlinx.collections.immutable.persistentListOf
-import kotlinx.coroutines.flow.onEach
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen(
-    vm: MainScreenViewModel,
-    goToDetailScreen: (questionId: String?) -> Unit
+    vm: MainScreenViewModel
 ) {
 
     val viewState = vm.viewStates.collectAsState()
-    val viewActions = vm.viewActions
 
     val questions = viewState.value.questions
     val emojiList = vm.emojiList
@@ -54,16 +49,7 @@ fun MainScreen(
 
     val pagerState = rememberPagerState(initialPage = initialIndex)
 
-    LaunchedEffect(viewActions) {
-        viewActions.onEach { action ->
-            when (action) {
-                is MainScreenAction.GoToQuestionDetail -> goToDetailScreen(action.questionId)
-            }
-        }.collect {
-            Log.d("APP_NAV", "$it")
-        }
-    }
-
+    //TODO: replace this with correct scrolling to question
     LaunchedEffect(viewState.value.initialPagerIndex) {
         pagerState.animateScrollToPage(initialIndex)
     }
