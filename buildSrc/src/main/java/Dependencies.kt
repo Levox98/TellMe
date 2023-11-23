@@ -15,8 +15,7 @@ object Dependencies {
         val runtime = "androidx.compose.runtime:runtime"
         val util = "androidx.compose.ui:ui-util"
 
-        //For some reason this dependency isn't recognized when getting version through BOM
-        val uiTestJUnit = "androidx.compose.ui:ui-test-junit4:$compose_junit_version"
+        val uiTestJUnit = "androidx.compose.ui:ui-test-junit4"
 
         val debugUiTooling = "androidx.compose.ui:ui-tooling"
         val debugUiTestManifest = "androidx.compose.ui:ui-test-manifest"

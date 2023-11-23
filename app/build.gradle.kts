@@ -70,7 +70,7 @@ dependencies {
     implementation(Dependencies.Compose.ui)
     implementation(Dependencies.Compose.uiToolingPreview)
     implementation(Dependencies.Compose.material)
-    androidTestImplementation(Dependencies.Compose.uiTestJUnit)
+    testImplementation(Dependencies.Compose.uiTestJUnit)
 
     kapt(Dependencies.Hilt.kapt)
     implementation(Dependencies.Hilt.hilt)
